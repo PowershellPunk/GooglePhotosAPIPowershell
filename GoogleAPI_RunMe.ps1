@@ -18,8 +18,8 @@ $Contents = Get-GoogApiAlbums -Year $Year -Month $Month
 ###### Compare and Download Files ######
 
 # Create Root Folder
-#$RootPath = "$env:USERPROFILE\Pictures\GooglePhotos"
-$RootPath = "E:\MyPictures"
+$RootPath = "$env:USERPROFILE\Pictures\GooglePhotos"
+#$RootPath = "E:\MyPictures"
 if(-not (Test-Path $RootPath)){mkdir $RootPath -Force}
 if(-not (Test-Path "$RootPath\$Year")){mkdir "$RootPath\$Year" -Force}
 if(-not (Test-Path "$RootPath\$Year\$Month")){mkdir "$RootPath\$Year\$Month" -Force}
