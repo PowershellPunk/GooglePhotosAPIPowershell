@@ -55,8 +55,8 @@ Function Get-GooglePhotos(){
 
     ###### Authenticate with Googles API ######
 
-    . .\Get-GoogApiAuth.ps1
-    . .\Get-GoogAPIAlbums.ps1
+    . "$($PSScriptRoot)\Get-GoogApiAuth.ps1"
+    . "$($PSScriptRoot)\Get-GoogAPIAlbums.ps1"
 
     if(-not (Get-GoogApiAuth -RefreshToken)){
         Get-GoogApiAuth
@@ -90,12 +90,14 @@ Function Get-GooglePhotos(){
             #$DownloadURL = "$BaseUrl=w$($Width)-h$($Height)"
             $DownloadURL = "$BaseUrl=d"
         }elseif($Media.mimeType -match "video"){
-            $DownloadURL = "$BaseUrl=dv"
+            #$DownloadURL = "$BaseUrl=dv"
+            $DownloadURL = "$BaseUrl=d"
         }
         $FullSavePath =  "$SavePath\$Year\$Month\$($Media.filename)"
 
         if(-not (Test-Path $FullSavePath)){
             $FullSavePath
+            #$DownloadURL
             $RawImage = $(Invoke-WebRequest -Uri $DownloadURL).Content
             [io.file]::WriteAllBytes($FullSavePath, $RawImage)
         }
