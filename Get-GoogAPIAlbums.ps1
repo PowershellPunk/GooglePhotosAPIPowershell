@@ -72,9 +72,13 @@ function Get-GoogApiAlbums(){
 
 function Get-GoogApiAlbums(){
     param (
-        [int]$Year = $(Get-Date -Format yyyy),
-        [int]$Month = $(Get-Date -Format MM)
+        [int]$Year,
+        [int]$Month
     )
+
+    $CurrDate = Get-Date
+    if(-not $Year){[int]$Year = $CurrDate.year}
+    if(-not $Month){[int]$Month = $CurrDate.month}
 
     $Contents = Get-Album -Year $Year -Month $Month   
    
@@ -86,9 +90,13 @@ function Get-GoogApiAlbums(){
     do{
 
         if($NextToken){
-            $Results = Get-Album -Year 2019 -Month 10 -nextPageToken $NextToken
+
+            $Results = Get-Album -Year $Year -Month $Month -nextPageToken $NextToken
+
         }else{
-            $Results = Get-Album -Year 2019 -Month 10
+
+            $Results = Get-Album -Year $Year -Month $Month
+
         }
         #$Results
         $count += $Results.mediaItems.Count
