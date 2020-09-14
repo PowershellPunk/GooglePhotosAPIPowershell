@@ -11,6 +11,9 @@
   C:\<User>\GoogAPIAuth_client_secret.txt
   C:\<User>\GoogAPIAuth_refresh_tokens.txt
 
+  Install Module
+  Import-Module C:\<PathToThisFile>\Get-GooglePhotos.psm1
+
  .Parameter Year
   Year of Photos Album
 
@@ -42,8 +45,6 @@
    Get-GooglePhotos -SavePath D:\MyPhotos
 
 #>
-
-# Import-Module .\GooglePhotos.psm1
 
 Function Get-GooglePhotos(){
 
